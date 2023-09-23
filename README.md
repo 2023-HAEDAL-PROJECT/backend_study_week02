@@ -1,6 +1,6 @@
 # 해달 프로젝트 부트캠프 2주차
 
-### JDBC를 이용하여 CRUD구현하기
+### ~~JDBC~~ JPA ENTITYMANAGER를 이용하여 CRUD구현하기
 
 ### 등록, 조회, 수정, 삭제가 가능한 todo list 만들기
 
