@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 @Repository
 @RequiredArgsConstructor
@@ -22,6 +24,14 @@ public class TodoRepository {
             return false;
         }
         return true;
+    }
+
+    public List<Todo> findTodo(){
+        List<Todo> todoList;
+        todoList = em.createQuery("SELECT t FROM Todo t", Todo.class)
+                .getResultList();
+
+        return todoList;
     }
 
 

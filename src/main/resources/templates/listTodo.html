@@ -10,6 +10,9 @@
   <tr>
     <th>할 일 목록</th>
   </tr>
+  <tr th:each="todo: ${todoList}">
+      <td th:text="${todo.task}"></td>
+  </tr>
 </table>
 
 </body>

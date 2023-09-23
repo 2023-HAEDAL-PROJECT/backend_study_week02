@@ -7,6 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Service
 @Transactional
@@ -25,8 +28,13 @@ public class TodoService {
             todoDto.setResult("할일을 저장하지 못했습니다.");
             todoDto.setSuccess(false);
         }
-
         return todoDto;
+    }
 
+    public List<Todo> read(){
+        List<Todo> todoList = todoRepository.findTodo();
+
+
+        return todoList;
     }
 }

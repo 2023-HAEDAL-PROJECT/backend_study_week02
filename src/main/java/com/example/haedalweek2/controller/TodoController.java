@@ -9,7 +9,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -18,6 +21,11 @@ public class TodoController {
     private final TodoService todoService;
 
     @GetMapping()
+    public String home(){
+        return "redirect:/read";
+    }
+
+    @GetMapping("create")
     public String form(TodoForm todoForm){
         return "addTodo";
     }
@@ -38,10 +46,21 @@ public class TodoController {
         System.out.println(task);
         TodoDto todoDto = todoService.create(task);
         if(todoDto.isSuccess()){
-            return "listTodo";
+            return "redirect:/read";
         }
         else{
             return "addTodo";
         }
+    }
+
+
+    @GetMapping("read")
+    public ModelAndView read(){
+        List<Todo> todoList;
+        todoList = todoService.read();
+        ModelAndView view = new ModelAndView("listTodo");
+        view.addObject("todoList",todoList);
+
+        return view;
     }
 }
