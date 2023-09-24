@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Todo-list</title>
+</head>
+<body>
+<table>
+  <tr>
+    <th>할 일 목록</th>
+  </tr>
+  <tr th:each="todo: ${todoList}">
+    <td th:if=${todo.done==false} th:text="${todo.task}" th:onclick="|location.href='@{/update(id=${todo.id})}'|"></td>
+    <td th:if=${todo.done==true} th:style="${'text-decoration:line-through'}" th:text="${todo.task}" th:onclick="|location.href='@{/update(id=${todo.id})}'|"></td>
+    <td><button type="button" th:onclick="|location.href='@{/delete(id=${todo.id})}'|">삭제</button></td>
+  </tr>
+
+</table>
+<button type="button" th:onclick="|location.href='@{/create}'|">추가하기</button>
+
+</body>
+</html>
