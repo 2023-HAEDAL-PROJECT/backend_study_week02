@@ -63,4 +63,11 @@ public class TodoController {
 
         return view;
     }
+
+
+    @GetMapping("delete")
+    public String delete(@RequestParam  Long id){
+        todoService.delete(id);
+        return "redirect:/read";
+    }
 }

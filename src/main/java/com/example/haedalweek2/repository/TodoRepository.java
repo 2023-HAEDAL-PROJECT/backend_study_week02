@@ -2,6 +2,7 @@ package com.example.haedalweek2.repository;
 
 import com.example.haedalweek2.domain.Todo;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -32,6 +33,19 @@ public class TodoRepository {
                 .getResultList();
 
         return todoList;
+    }
+
+    public Todo findById(Long id){
+        TypedQuery<Todo> todo;
+        todo = em.createQuery("select t from Todo t where t.id = :id", Todo.class);
+        todo.setParameter("id", id);
+
+        return todo.getSingleResult();
+    }
+
+    public void delete(Long id){
+        Todo todo = findById(id);
+        em.remove(todo);
     }
 
 

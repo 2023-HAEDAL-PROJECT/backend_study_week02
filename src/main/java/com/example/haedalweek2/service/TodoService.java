@@ -33,8 +33,11 @@ public class TodoService {
 
     public List<Todo> read(){
         List<Todo> todoList = todoRepository.findTodo();
-
-
         return todoList;
+    }
+
+    public void delete(Long id){
+        TodoDto todoDto = new TodoDto();
+        todoRepository.delete(id);
     }
 }
