@@ -49,4 +49,10 @@ public class TodoRepository {
     }
 
 
+    public void update(Long id){
+        Todo todo = findById(id);
+        todo.setDone(!todo.isDone());
+    }
+
+
 }

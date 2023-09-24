@@ -66,8 +66,14 @@ public class TodoController {
 
 
     @GetMapping("delete")
-    public String delete(@RequestParam  Long id){
+    public String delete(@RequestParam Long id){
         todoService.delete(id);
+        return "redirect:/read";
+    }
+
+    @GetMapping("update")
+    public String update(@RequestParam Long id){
+        todoService.update(id);
         return "redirect:/read";
     }
 }

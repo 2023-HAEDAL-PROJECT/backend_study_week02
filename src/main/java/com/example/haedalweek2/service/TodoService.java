@@ -40,4 +40,9 @@ public class TodoService {
         TodoDto todoDto = new TodoDto();
         todoRepository.delete(id);
     }
+
+    public void update(Long id){
+        TodoDto todoDto = new TodoDto();
+        todoRepository.update(id);
+    }
 }
