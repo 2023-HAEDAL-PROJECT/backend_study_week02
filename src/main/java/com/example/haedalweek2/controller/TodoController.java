@@ -2,25 +2,27 @@ package com.example.haedalweek2.controller;
 
 
 
+import com.example.haedalweek2.domain.Todo;
+import com.example.haedalweek2.dto.TodoDto;
 import com.example.haedalweek2.form.TodoForm;
 import com.example.haedalweek2.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 
-
-@Controller()
+@Controller
 @RequiredArgsConstructor
 public class TodoController {
     private final TodoService todoService;
 
-//    @GetMapping("/jdbc")
-//    public String home(){
-//        return "redirect:/read";
-//    }
+    @GetMapping("/jdbc")
+    public String home(){
+        return "redirect:/jdbc/read";
+    }
 
     @GetMapping("/jdbc/create")
     public String form(TodoForm todoForm){
@@ -28,14 +30,13 @@ public class TodoController {
     }
 
 
-    /*
     @PostMapping("/jdbc/create")
     public String create(TodoForm todoForm){
         String task = todoForm.getTask();
         System.out.println(task);
         TodoDto todoDto = todoService.create(task);
         if(todoDto.isSuccess()){
-            return "redirect:/read";
+            return "redirect:/jdbc/read";
         }
         else{
             return "addTodo";
@@ -57,15 +58,13 @@ public class TodoController {
     @GetMapping("/jdbc/delete")
     public String delete(@RequestParam Long id){
         todoService.delete(id);
-        return "redirect:/read";
+        return "redirect:/jdbc/read";
     }
 
-    */
 
     @GetMapping("/jdbc/update")
-    public @ResponseBody String update(@RequestParam Long id){
+    public String update(@RequestParam Long id){
         todoService.update(id);
-        //return "redirect:/";
-        return "성공";
+        return "redirect:/jdbc/read";
     }
 }
